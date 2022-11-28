@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Logo from "./argentBankLogo.png";
+import Logo from "./assets/argentBankLogo.png";
 import "./NavigationBar.css";
 
 function NavigationBar() {
