@@ -3,7 +3,7 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import Account from "../../components/Account/Account";
 import UserHeader from "../../components/UserHeader/UserHeader";
 
-function UserPage() {
+function ProfilePage() {
   return (
     <>
       <NavigationBar />
@@ -31,4 +31,4 @@ function UserPage() {
   );
 }
 
-export default UserPage;
+export default ProfilePage;
