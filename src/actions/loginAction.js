@@ -1,5 +1,5 @@
 import axios from "axios";
-import { USER_LOGIN_SUCCESS, USER_LOGIN_FAIL } from "./store.js";
+import { USER_LOGIN_SUCCESS, USER_LOGIN_FAIL } from "../reducers/loginReducer";
 
 // Login action
 
