@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { login } from "../../actions/loginAction";
+import { useStore, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { fetchLogin } from "../../features/login";
 import "./SignIn.css";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch();
+  const store = useStore();
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    fetchLogin(store, email, password);
   };
 
-  const token = useSelector((state) => state.token);
+  const { error } = useSelector((state) => state.userLogin);
+  const { token } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
     if (token) {
@@ -28,7 +29,7 @@ function SignIn() {
     <section className="sign-in-content">
       <i className="fa fa-user-circle sign-in-icon"></i>
       <h1>Sign In</h1>
-      <form onSubmit={submitHandler}>
+      <form>
         <div className="input-wrapper">
           <label htmlFor="username">Username</label>
           <input
@@ -51,9 +52,15 @@ function SignIn() {
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <button className="sign-in-button" type="submit" name="Login">
+        <button className="sign-in-button" onClick={submitHandler}>
           Sign In
         </button>
+        {error && (
+          <div>
+            <br />
+            {error}
+          </div>
+        )}
       </form>
     </section>
   );
