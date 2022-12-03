@@ -19,7 +19,7 @@ export const userProfileFail = createAction("USER_PROFILE_FAIL", (error) => ({
   payload: error,
 }));
 
-export async function userProfile(store, token) {
+export async function fetchProfile(store, token) {
   try {
     const config = {
       headers: {

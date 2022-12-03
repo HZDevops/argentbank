@@ -1,14 +1,33 @@
+import { useStore, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { fetchProfile } from "../../features/user";
 import Footer from "../../components/Footer/Footer";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import Account from "../../components/Account/Account";
 import UserHeader from "../../components/UserHeader/UserHeader";
 
 function ProfilePage() {
+  const store = useStore();
+  const navigate = useNavigate();
+
+  const { token } = useSelector((state) => state.userLogin);
+
+  useEffect(() => {
+    fetchProfile(store, token);
+    if (!token) {
+      navigate("/");
+    }
+  }, [store, token, navigate]);
+
+  const { firstName } = useSelector((state) => state.userProfile);
+  const { lastName } = useSelector((state) => state.userProfile);
+
   return (
     <>
       <NavigationBar />
       <main className="main bg-dark bg-padding">
-        <UserHeader firstname="Marvel" />
+        <UserHeader firstname={firstName} lastname={lastName} />
         <h2 className="sr-only">Accounts</h2>
         <Account
           title="Argent Bank Checking (x8349)"
