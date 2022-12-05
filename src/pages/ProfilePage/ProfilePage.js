@@ -15,15 +15,12 @@ function ProfilePage() {
 
   useEffect(() => {
     fetchProfile(store, token);
-    if (!token) {
-      navigate("/");
-    }
-  }, [store, token, navigate]);
+  }, [store, token]);
 
   const { firstName } = useSelector((state) => state.userProfile);
   const { lastName } = useSelector((state) => state.userProfile);
 
-  return (
+  return token ? (
     <>
       <NavigationBar />
       <main className="main bg-dark bg-padding">
@@ -47,6 +44,8 @@ function ProfilePage() {
       </main>
       <Footer />
     </>
+  ) : (
+    navigate("/")
   );
 }
 

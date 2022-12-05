@@ -1,5 +1,5 @@
 import { useStore, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { updateProfile } from "../../features/user";
 import "./UserHeader.css";
 
