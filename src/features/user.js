@@ -18,6 +18,7 @@ export const userProfilSuccess = createAction(
 export const userProfileFail = createAction("USER_PROFILE_FAIL", (error) => ({
   payload: error,
 }));
+export const userProfilReset = createAction("USER_PROFILE_RESET");
 
 export async function fetchProfile(store, token) {
   try {
@@ -50,6 +51,9 @@ export function userReducer(state = initialState, action) {
   }
   if (action.type === userProfileFail.toString()) {
     return { isSucceed: false, error: action.payload };
+  }
+  if (action.type === userProfilReset.toString()) {
+    return { isSucceed: false, firstName: null, lastName: null };
   }
   return state;
 }

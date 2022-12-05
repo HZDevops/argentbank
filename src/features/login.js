@@ -14,6 +14,7 @@ export const userLoginSuccess = createAction("USER_LOGIN_SUCCESS", (data) => ({
 export const userLoginFail = createAction("USER_LOGIN_FAIL", (error) => ({
   payload: error,
 }));
+export const userLogout = createAction("USER_LOGOUT");
 
 export async function fetchLogin(store, email, password) {
   try {
@@ -41,6 +42,9 @@ export function loginReducer(state = initialState, action) {
   }
   if (action.type === userLoginFail.toString()) {
     return { isLogged: false, token: null, error: action.payload.message };
+  }
+  if (action.type === userLogout.toString()) {
+    return { isLogged: false, token: null };
   }
   return state;
 }
