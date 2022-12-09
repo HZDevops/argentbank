@@ -13,8 +13,6 @@ import Footer from "../../components/Footer/Footer";
 import "./HomePage.css";
 
 function HomePage() {
-  document.title = "Argent Bank - Home Page";
-
   /* ===== Features Content ===== */
 
   // Feature's titles

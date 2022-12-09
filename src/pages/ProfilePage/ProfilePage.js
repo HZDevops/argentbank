@@ -45,7 +45,7 @@ function ProfilePage() {
       <Footer />
     </>
   ) : (
-    navigate("/")
+    navigate("/login")
   );
 }
 

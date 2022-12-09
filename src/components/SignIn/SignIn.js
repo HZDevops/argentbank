@@ -56,7 +56,7 @@ function SignIn() {
           Sign In
         </button>
         {error && (
-          <div>
+          <div className="error">
             <br />
             {error}
           </div>

@@ -31,7 +31,7 @@ export async function fetchLogin(store, email, password) {
     );
     store.dispatch(userLoginSuccess(data));
   } catch (error) {
-    store.dispatch(userLoginFail(error));
+    store.dispatch(userLoginFail(error.message));
   }
 }
 
@@ -41,7 +41,7 @@ export function loginReducer(state = initialState, action) {
     return { isLogged: true, token: action.payload.body.token };
   }
   if (action.type === userLoginFail.toString()) {
-    return { isLogged: false, token: null, error: action.payload.message };
+    return { isLogged: false, token: null, error: action.payload };
   }
   if (action.type === userLogout.toString()) {
     return { isLogged: false, token: null };
