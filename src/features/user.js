@@ -16,7 +16,10 @@ export const userProfilSuccess = createAction(
   })
 );
 export const userProfileFail = createAction("USER_PROFILE_FAIL", (error) => ({
-  payload: error,
+  payload:
+    error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message,
 }));
 export const userProfilReset = createAction("USER_PROFILE_RESET");
 export const userProfileUpdate = createAction(

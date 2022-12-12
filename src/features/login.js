@@ -12,7 +12,10 @@ export const userLoginSuccess = createAction("USER_LOGIN_SUCCESS", (data) => ({
   payload: data,
 }));
 export const userLoginFail = createAction("USER_LOGIN_FAIL", (error) => ({
-  payload: error,
+  payload:
+    error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message,
 }));
 export const userLogout = createAction("USER_LOGOUT");
 
@@ -31,7 +34,8 @@ export async function fetchLogin(store, email, password) {
     );
     store.dispatch(userLoginSuccess(data));
   } catch (error) {
-    store.dispatch(userLoginFail(error.message));
+    console.log(error);
+    store.dispatch(userLoginFail(error));
   }
 }
 
