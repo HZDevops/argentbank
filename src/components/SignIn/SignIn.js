@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useStore, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { fetchLogin } from "../../features/login";
+import { fetchProfile } from "../../features/user";
 import "./SignIn.css";
 
 function SignIn() {
@@ -21,9 +22,10 @@ function SignIn() {
 
   useEffect(() => {
     if (token) {
+      fetchProfile(store, token);
       navigate("/profile");
     }
-  }, [token, navigate]);
+  }, [token, store, navigate]);
 
   return (
     <section className="sign-in-content">

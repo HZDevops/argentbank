@@ -1,21 +1,16 @@
-import { useStore, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
-import { fetchProfile } from "../../features/user";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router";
 import Footer from "../../components/Footer/Footer";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import Account from "../../components/Account/Account";
 import UserHeader from "../../components/UserHeader/UserHeader";
 
 function ProfilePage() {
-  const store = useStore();
-  const navigate = useNavigate();
-
   const { token } = useSelector((state) => state.userLogin);
 
-  useEffect(() => {
-    fetchProfile(store, token);
-  }, [store, token]);
+  if (!token) {
+    <Navigate to="/" />;
+  }
 
   const { firstName } = useSelector((state) => state.userProfile);
   const { lastName } = useSelector((state) => state.userProfile);
@@ -45,7 +40,7 @@ function ProfilePage() {
       <Footer />
     </>
   ) : (
-    navigate("/login")
+    <Navigate to="/" />
   );
 }
 

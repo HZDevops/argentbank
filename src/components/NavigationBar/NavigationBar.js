@@ -1,13 +1,12 @@
 import { useStore, useSelector } from "react-redux";
 import { userLogout } from "../../features/login";
 import { userProfilReset } from "../../features/user";
-import { useNavigate, NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import Logo from "./assets/argentBankLogo.png";
 import "./NavigationBar.css";
 
 function NavigationBar() {
   const store = useStore();
-  const navigate = useNavigate();
 
   const { token } = useSelector((state) => state.userLogin);
   const { firstName } = useSelector((state) => state.userProfile);
@@ -15,7 +14,7 @@ function NavigationBar() {
   const logoutHandler = () => {
     store.dispatch(userLogout());
     store.dispatch(userProfilReset());
-    navigate("/");
+    <Navigate to="/" />;
   };
 
   return token ? (
